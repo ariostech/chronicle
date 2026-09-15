@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Private security report
+    url: https://github.com/ariostech/chronicle/security/advisories/new
+    about: Report vulnerabilities and suspected cross-scope exposure privately.
+  - name: Contribution guide
+    url: https://github.com/ariostech/chronicle/blob/main/CONTRIBUTING.md
+    about: Read the contribution and RFC requirements before proposing a large change.

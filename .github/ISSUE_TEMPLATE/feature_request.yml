@@ -1,0 +1,44 @@
+name: Feature request
+description: Propose a bounded capability that fits Chronicle's charter.
+title: "proposal: "
+body:
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      options:
+        - label: I searched the roadmap, issues, ADRs, and RFCs.
+          required: true
+        - label: I read the project charter and confirmed this is not an explicit non-goal.
+          required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the user or operator problem without prescribing a solution first.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should become possible, and how would we know it works?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed approach
+      description: Include alternatives and why existing interfaces are insufficient.
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Trust and compatibility impact
+      description: Consider identity, authorization, scope, provenance, time, retention, portability, APIs, MCP, OKF, and providers.
+  - type: checkboxes
+    id: rfc
+    attributes:
+      label: RFC check
+      options:
+        - label: I understand that public-contract, trust-boundary, governance, and major architecture changes require an RFC before implementation.
+          required: true

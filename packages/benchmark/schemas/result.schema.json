@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chronicle.dev/schemas/benchmark/result-0.1.schema.json",
+  "title": "Chronicle benchmark result v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "suite",
+    "subject",
+    "environment",
+    "started_at",
+    "completed_at",
+    "seed",
+    "cases",
+    "aggregates",
+    "required_skips",
+    "disqualifying_failures",
+    "conformant",
+    "outcome_digest"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "suite": {
+      "type": "object",
+      "required": ["id", "dataset_version", "profile", "sha256"],
+      "properties": {
+        "id": {"type": "string"},
+        "dataset_version": {"type": "string"},
+        "profile": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "subject": {
+      "type": "object",
+      "required": ["adapter", "adapter_version", "provider_version", "model_id", "configuration_label", "configuration_fingerprint"],
+      "properties": {
+        "adapter": {"type": "string"},
+        "adapter_version": {"type": "string"},
+        "provider_version": {"type": "string"},
+        "model_id": {"type": "string"},
+        "configuration_label": {"type": "string"},
+        "configuration_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "environment": {
+      "type": "object",
+      "required": ["python", "implementation", "operating_system", "release", "architecture", "source_revision", "dirty_worktree"],
+      "properties": {
+        "python": {"type": "string"},
+        "implementation": {"type": "string"},
+        "operating_system": {"type": "string"},
+        "release": {"type": "string"},
+        "architecture": {"type": "string"},
+        "source_revision": {"type": "string"},
+        "dirty_worktree": {"type": "boolean"}
+      }
+    },
+    "started_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "seed": {"type": "integer"},
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "security_gate", "status", "failures", "metrics", "operations"],
+        "properties": {
+          "id": {"type": "string"},
+          "category": {"type": "string"},
+          "security_gate": {"type": "boolean"},
+          "status": {"enum": ["passed", "failed", "skipped"]},
+          "reason": {"type": "string"},
+          "failures": {"type": "array", "items": {"type": "string"}},
+          "metrics": {"type": "object", "additionalProperties": {"type": "number"}},
+          "operations": {"type": "array", "items": {"type": "object"}}
+        }
+      }
+    },
+    "aggregates": {
+      "type": "object",
+      "required": ["case_count", "passed", "failed", "skipped", "mean_metrics", "latency_ms"],
+      "properties": {
+        "case_count": {"type": "integer"},
+        "passed": {"type": "integer"},
+        "failed": {"type": "integer"},
+        "skipped": {"type": "integer"},
+        "mean_metrics": {"type": "object", "additionalProperties": {"type": "number"}},
+        "latency_ms": {
+          "type": "object",
+          "required": ["p50", "p95"],
+          "properties": {"p50": {"type": "number"}, "p95": {"type": "number"}}
+        }
+      }
+    },
+    "required_skips": {"type": "array", "items": {"type": "string"}},
+    "disqualifying_failures": {"type": "array", "items": {"type": "string"}},
+    "conformant": {"type": "boolean"},
+    "outcome_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

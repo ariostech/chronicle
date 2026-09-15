@@ -1,0 +1,67 @@
+name: Bug report
+description: Report a reproducible defect using synthetic or non-sensitive data.
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not report vulnerabilities or cross-scope data exposure here. Use the private process in SECURITY.md.
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      options:
+        - label: I searched existing issues and confirmed this is not a security report.
+          required: true
+        - label: I removed credentials, personal data, customer data, and confidential records.
+          required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Exact version, tag, or commit SHA where possible.
+      placeholder: main at abc1234
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, architecture, deployment profile, provider, database, model route, and relevant configuration with secrets removed.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction
+      description: Minimal numbered steps using synthetic data.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs or evidence
+      description: Paste only the smallest useful redacted excerpt.
+      render: shell
+  - type: dropdown
+    id: regression
+    attributes:
+      label: Regression?
+      options:
+        - Unknown
+        - Yes
+        - No
+    validations:
+      required: true

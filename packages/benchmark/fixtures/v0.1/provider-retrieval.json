@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1",
+  "suite_id": "chronicle-provider-retrieval-smoke",
+  "dataset_version": "0.1.0",
+  "description": "Small synthetic retain and recall suite for live memory providers.",
+  "profile": "provider-retrieval",
+  "default_k": 5,
+  "cases": [
+    {
+      "id": "provider-fact-recall",
+      "category": "quality.fact-recall",
+      "description": "Retain and recall a distinctive project fact.",
+      "security_gate": false,
+      "required_capabilities": ["retain", "recall"],
+      "operations": [
+        {"op": "retain", "record": {"id": "provider-port", "text": "The synthetic Caldera gateway listens on port 8642.", "scope": "benchmark:caldera", "state": "active", "authority": "memory", "provenance": ["fixture:provider-port"], "tags": ["chronicle-benchmark", "caldera"]}},
+        {"op": "recall", "query": {"text": "Which port does the Caldera gateway use?", "k": 3, "max_context_tokens": 512, "tags": ["chronicle-benchmark", "caldera"]}, "expected": {"relevant_ids": ["provider-port"], "forbidden_ids": [], "minimum": {"recall_at_k": 1.0}}}
+      ]
+    },
+    {
+      "id": "provider-entity-alias",
+      "category": "quality.entity-resolution",
+      "description": "Retain an expanded entity name and recall it by its short form.",
+      "security_gate": false,
+      "required_capabilities": ["retain", "recall"],
+      "operations": [
+        {"op": "retain", "record": {"id": "provider-entity", "text": "The synthetic Northwind Coordination Service, also called NCS, schedules batch work.", "scope": "benchmark:northwind", "state": "active", "authority": "memory", "provenance": ["fixture:provider-entity"], "tags": ["chronicle-benchmark", "northwind"]}},
+        {"op": "recall", "query": {"text": "What does NCS schedule?", "k": 3, "max_context_tokens": 512, "tags": ["chronicle-benchmark", "northwind"]}, "expected": {"relevant_ids": ["provider-entity"], "forbidden_ids": [], "minimum": {"recall_at_k": 1.0}}}
+      ]
+    }
+  ]
+}

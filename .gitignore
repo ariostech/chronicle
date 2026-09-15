@@ -1,0 +1,29 @@
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+CLAUDE.local.md
+*.pem
+*.key
+
+# Logs, coverage, and build outputs
+*.log
+coverage/
+dist/
+build/
+tmp/
+.cache/
+__pycache__/
+*.py[cod]
+
+# Language-specific entries should be added with the implementation-stack ADR.
+
+# Local Claude Code implementation prompts (not part of the public repo)
+docs/implementation/claude-code/

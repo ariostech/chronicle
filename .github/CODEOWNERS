@@ -1,0 +1,10 @@
+# Initial ownership is intentionally broad while Chronicle has one maintainer.
+# Replace broad ownership with area owners as maintainers are appointed.
+* @ariostech
+
+/docs/security/ @ariostech
+/SECURITY.md @ariostech
+/.github/workflows/ @ariostech
+/GOVERNANCE.md @ariostech
+/MAINTAINERS.md @ariostech
+/RELEASING.md @ariostech
